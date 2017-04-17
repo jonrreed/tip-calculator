@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<title>Tip Calculator</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div ng-app="tipCalc" ng-controller="tipCalcCtrl" class="container text-center">
+		<h1>Tip Calculator</h1>
+		<div class="col-sm-5">
+			<h5>Enter percentage to tip</h5>
+			<h2>Tip Percent: <input type="number" ng-model="tipPercent">%</h2>
+		</div>
+		<div class="col-sm-2"></div>
+		<div class="col-sm-5">
+			<h5>Enter price before tax</h5>
+			<h3>Cost before tax: $ <input type="number" ng-model="basePrice"></h3>
+			<h3>Tip: <span>{{basePrice * (tipPercent/100) | currency}}</span></h3>
+			<h3>Subtotal: {{basePrice + (basePrice * (tipPercent/100)) | currency}}</h3>
+			<h5>Optional: add tax</h5>
+			<h3>Tax: <input type="number" ng-model="tax"></h3>
+			<h3>Total: {{basePrice + (basePrice * (tipPercent/100)) + tax | currency}}</h3>
+		</div>
+	</div>
+
+<script>
+	var tipCalcApp = angular.module("tipCalc", []);
+	tipCalcApp.controller("tipCalcCtrl", function($scope) {
+		$scope.basePrice;
+		$scope.tipPercent = 15;
+		$scope.tax;
+	});
+</script>
+</body>
+
+</html>
